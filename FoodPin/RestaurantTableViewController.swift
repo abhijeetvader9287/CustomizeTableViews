@@ -48,11 +48,20 @@ class RestaurantTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath:
         IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
-                                                 for: indexPath)
+       // let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
+         //                                        for: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for:
+            indexPath) as! RestaurantTableViewCell
         // Configure the cell...
-        cell.textLabel?.text = restaurantNames[indexPath.row]
-        cell.imageView?.image = UIImage(named:restaurantImages[indexPath.row])
+       // cell.textLabel?.text = restaurantNames[indexPath.row]
+        //cell.imageView?.image = UIImage(named:restaurantImages[indexPath.row])
+        cell.nameLabel.text = restaurantNames[indexPath.row]
+        cell.thumbnailImageView.image = UIImage(named: restaurantImages[indexPath.row])
+        cell.locationLabel.text = restaurantNames[indexPath.row]
+        cell.typeLabel.text = restaurantNames[indexPath.row]
+        cell.thumbnailImageView.layer.cornerRadius = 30.0
+        cell.thumbnailImageView.clipsToBounds = true
         
         return cell }
     
