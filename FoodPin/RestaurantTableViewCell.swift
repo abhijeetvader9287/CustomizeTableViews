@@ -2,13 +2,14 @@
 //  RestaurantTableViewCell.swift
 //  FoodPin
 //
-//  Created by Twig Soft on 6/3/17.
-//  Copyright © 2017 Twig Soft. All rights reserved.
+//  Created by Simon Ng on 11/7/2016.
+//  Copyright © 2016 AppCoda. All rights reserved.
 //
 
 import UIKit
 
 class RestaurantTableViewCell: UITableViewCell {
+    
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
