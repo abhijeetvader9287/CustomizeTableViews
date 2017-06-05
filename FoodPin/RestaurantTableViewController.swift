@@ -98,6 +98,19 @@ class RestaurantTableViewController: UITableViewController {
         // Display the menu
         present(optionMenu, animated: true, completion: nil)
     }
-    
+    //adds swipe to delete function
+    override func tableView(_ tableView: UITableView, commit editingStyle:
+        UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            restaurantNames.remove(at: indexPath.row)
+            restaurantLocations.remove(at: indexPath.row)
+            restaurantTypes.remove(at: indexPath.row)
+            restaurantIsVisited.remove(at: indexPath.row)
+            restaurantImages.remove(at: indexPath.row)
+        }
+        tableView.reloadData()
+    }
 
 }
