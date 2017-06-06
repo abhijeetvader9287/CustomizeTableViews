@@ -113,5 +113,40 @@ class RestaurantTableViewController: UITableViewController {
         //tableView.reloadData()//it reloads all data
          tableView.deleteRows(at: [indexPath], with: .fade)//this removes only specific row
     }
+    
+    //swipe for more actions
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt
+        indexPath: IndexPath) -> [UITableViewRowAction]? {
+        // Social Sharing Button
+        let shareAction = UITableViewRowAction(style:
+            UITableViewRowActionStyle.default, title: "Share", handler: { (action,
+                indexPath) -> Void in
+                let defaultText = "Just checking in at " +
+                    self.restaurantNames[indexPath.row]
+                let activityController = UIActivityViewController(activityItems:
+                    [defaultText], applicationActivities: nil)
+                self.present(activityController, animated: true, completion: nil)
+        })
+        // Delete button
+        let deleteAction = UITableViewRowAction(style:UITableViewRowActionStyle.default, title: "Delete",handler: { (action,
+            indexPath) -> Void in
+            // Delete the row from the data source
+            self.restaurantNames.remove(at: indexPath.row)
+            self.restaurantLocations.remove(at: indexPath.row)
+            self.restaurantTypes.remove(at: indexPath.row)
+            self.restaurantIsVisited.remove(at: indexPath.row)
+            self.restaurantImages.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+        })
+        shareAction.backgroundColor = UIColor(red: 48.0/255.0, green: 173.0/255.0,
+                                              blue: 99.0/255.0, alpha: 1.0)
+        deleteAction.backgroundColor = UIColor(red: 202.0/255.0, green: 202.0/255.0,
+                                               blue: 203.0/255.0, alpha: 1.0)
+
+        return [deleteAction, shareAction]
+        
+    }
+    
 
 }
