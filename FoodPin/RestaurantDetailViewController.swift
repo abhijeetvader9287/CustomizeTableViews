@@ -2,20 +2,32 @@
 //  RestaurantDetailViewController.swift
 //  FoodPin
 //
-//  Created by Twig Soft on 6/6/17.
-//  Copyright © 2017 AppCoda. All rights reserved.
+//  Created by Simon Ng on 20/7/2016.
+//  Copyright © 2016 AppCoda. All rights reserved.
 //
 
 import UIKit
 
 class RestaurantDetailViewController: UIViewController {
-    @IBOutlet var restaurantImageView:UIImageView!
+    
+    @IBOutlet var restaurantImageView: UIImageView!
+    @IBOutlet var restaurantNameLabel: UILabel!
+    @IBOutlet var restaurantTypeLabel: UILabel!
+    @IBOutlet var restaurantLocationLabel: UILabel!
+    
     var restaurantImage = ""
+    var restaurantName = ""
+    var restaurantType = ""
+    var restaurantLocation = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-restaurantImageView.image = UIImage(named: restaurantImage)
+
         // Do any additional setup after loading the view.
+        restaurantImageView.image = UIImage(named: restaurantImage)
+        restaurantNameLabel.text = restaurantName
+        restaurantTypeLabel.text = restaurantType
+        restaurantLocationLabel.text = restaurantLocation
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +40,7 @@ restaurantImageView.image = UIImage(named: restaurantImage)
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }

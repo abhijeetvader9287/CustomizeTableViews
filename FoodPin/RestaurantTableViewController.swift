@@ -62,49 +62,49 @@ class RestaurantTableViewController: UITableViewController {
         
         return cell
     }
-    /*
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Create an option menu as an action sheet
-        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
-        
-        // Add actions to the menu
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        optionMenu.addAction(cancelAction)
-        
-        // Add Call action
-        let callActionHandler = { (action:UIAlertAction!) -> Void in
-            
-            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .alert)
-            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertMessage, animated: true, completion: nil)
-            
-        }
-        
-        let callAction = UIAlertAction(title: "Call " + "123-000-\(indexPath.row)", style: .default, handler: callActionHandler)
-        optionMenu.addAction(callAction)
-        
-        // Check-in action
-        // Determine the check in title. If the selected restaurant has been checked (i.e.
-        // restaurantIsVisited[indexPath.row] returns true), the title will be set to "Undo Check in".
-        let checkInTitle = restaurantIsVisited[indexPath.row] ? "Undo Check in" : "Check in"
-        let checkInAction = UIAlertAction(title: checkInTitle, style: .default, handler: {
-            (action:UIAlertAction!) -> Void in
-            
-            let cell = tableView.cellForRow(at: indexPath)
-            
-            // Toggle check-in and undo-check-in
-            self.restaurantIsVisited[indexPath.row] = self.restaurantIsVisited[indexPath.row] ? false : true
-            cell?.accessoryType = self.restaurantIsVisited[indexPath.row] ? .checkmark : .none
-        })
-        optionMenu.addAction(checkInAction)
-        
-        tableView.deselectRow(at: indexPath, animated: false)
-        
-        // Display the menu
-        present(optionMenu, animated: true, completion: nil)
-    }
-*/
-    //swipe to delete
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        // Create an option menu as an action sheet
+//        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
+//        
+//        // Add actions to the menu
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        optionMenu.addAction(cancelAction)
+//        
+//        // Add Call action
+//        let callActionHandler = { (action:UIAlertAction!) -> Void in
+//            
+//            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .alert)
+//            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//            self.present(alertMessage, animated: true, completion: nil)
+//            
+//        }
+//        
+//        let callAction = UIAlertAction(title: "Call " + "123-000-\(indexPath.row)", style: .default, handler: callActionHandler)
+//        optionMenu.addAction(callAction)
+//        
+//        // Check-in action
+//        // Determine the check in title. If the selected restaurant has been checked (i.e.
+//        // restaurantIsVisited[indexPath.row] returns true), the title will be set to "Undo Check in".
+//        let checkInTitle = restaurantIsVisited[indexPath.row] ? "Undo Check in" : "Check in"
+//        let checkInAction = UIAlertAction(title: checkInTitle, style: .default, handler: {
+//            (action:UIAlertAction!) -> Void in
+//            
+//            let cell = tableView.cellForRow(at: indexPath)
+//            
+//            // Toggle check-in and undo-check-in
+//            self.restaurantIsVisited[indexPath.row] = self.restaurantIsVisited[indexPath.row] ? false : true
+//            cell?.accessoryType = self.restaurantIsVisited[indexPath.row] ? .checkmark : .none
+//        })
+//        optionMenu.addAction(checkInAction)
+//        
+//        tableView.deselectRow(at: indexPath, animated: false)
+//        
+//        // Display the menu
+//        present(optionMenu, animated: true, completion: nil)
+//    }
+    
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
@@ -123,7 +123,7 @@ class RestaurantTableViewController: UITableViewController {
             print(name)
         }
     }
-//swipe to more
+
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         // Social Sharing Button
@@ -155,15 +155,18 @@ class RestaurantTableViewController: UITableViewController {
         
         return [deleteAction, shareAction]
     }
-    //pass value to next scene
+    
+    // MARK: - Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showRestaurantDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let destinationController = segue.destination as!
-                RestaurantDetailViewController
-                destinationController.restaurantImage =
-                    restaurantImages[indexPath.row]
+                let destinationController = segue.destination as! RestaurantDetailViewController
+                destinationController.restaurantImage = restaurantImages[indexPath.row]
+                destinationController.restaurantName = restaurantNames[indexPath.row]
+                destinationController.restaurantType = restaurantTypes[indexPath.row]
+                destinationController.restaurantLocation = restaurantLocations[indexPath.row]
             }
-        } }
-    
+        }
+    }
 }
