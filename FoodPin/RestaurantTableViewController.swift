@@ -110,7 +110,8 @@ class RestaurantTableViewController: UITableViewController {
             restaurantIsVisited.remove(at: indexPath.row)
             restaurantImages.remove(at: indexPath.row)
         }
-        tableView.reloadData()
+        //tableView.reloadData()//it reloads all data
+         tableView.deleteRows(at: [indexPath], with: .fade)//this removes only specific row
     }
 
 }
